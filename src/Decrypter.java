@@ -5,9 +5,8 @@ import java.util.Random;
 public class Decrypter {
     public static String decrypt(int[] a, int b ) {
         int[] in = a;
-        int seed = b;
-        Random random = new Random(seed);
-        HashMap<Integer,String> map = new HashMap<Integer, String>();
+        Random random = new Random(b);
+        HashMap<Integer,String> map = new HashMap<>();
 
         map.put(1,"a");
         map.put(2,"b");
@@ -72,7 +71,7 @@ public class Decrypter {
 
 
         for (int i = 0; i < length; i++) {
-            seedInts[i] = random.nextInt(10000);
+            seedInts[i] = (random.nextInt(10000) + 1);
         }
         for (int i = 0; i < length; i++) {
             newInts[i] = (in[i] / seedInts[i]);

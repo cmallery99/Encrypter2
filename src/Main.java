@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
         Random random = new Random();
 
         System.out.println(Arrays.toString(args));
@@ -19,10 +18,34 @@ public class Main {
 
         if (ed.equals("-e")) {
 
-            String sEncrypt = args[1];
+            String filePath = args[1];
 
-            String filePath = args[2];
+            String sEncrypt;
 
+            if (args[2].equals("-r")) {
+                String filePathRead = args[3];
+                String inString = null;
+                try {
+                    File file = new File(filePathRead);
+                    Scanner reader = new Scanner(file);
+
+                    while (reader.hasNextLine()) {
+                        inString = inString + reader.nextLine();
+                    }
+
+                }
+                catch (FileNotFoundException e) {
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
+
+
+                sEncrypt = inString;
+            }
+
+            else {
+                sEncrypt = args[2];
+            }
             try {
                 File file = new File(filePath);
                 if (file.createNewFile()) {
@@ -40,7 +63,7 @@ public class Main {
             try {
                 FileWriter writer = new FileWriter(filePath);
 
-                int seed = random.nextInt(10000 );
+                int seed = (random.nextInt(10000 ) + 1);
 
                 int[] ia = Encrypter.encrypt(sEncrypt, seed);
 
@@ -98,6 +121,11 @@ public class Main {
             String ans = Decrypter.decrypt(message,seed);
 
             System.out.println(ans);
+
+        }
+
+        if (ed.equals("-h")) {
+            System.out.println("Encrypter3.jar -e|-d filename [text]");
 
         }
     }
