@@ -120,8 +120,37 @@ public class Main {
 
             String ans = Decrypter.decrypt(message,seed);
 
-            System.out.println(ans);
+            if (args[2].equals("-w")) {
+                String writePath = args[3];
+                try {
+                    File file = new File(writePath);
+                    if (file.createNewFile()) {
+                        System.out.println("File created: " + file.getName());
+                    }
+                    else {
+                        System.out.println("File already exists.");
+                    }
+                }
+                catch (IOException e) {
+                    System.out.println("An error has occurred.");
+                    e.printStackTrace();
+                }
+                try {
+                    FileWriter writer = new FileWriter(writePath);
 
+                    writer.write(ans);
+                    writer.close();
+                    System.out.println("Successfully wrote to file.");
+
+                }
+                catch (IOException e) {
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
+            }
+            else {
+                System.out.println(ans);
+            }
         }
 
         if (ed.equals("-h")) {
