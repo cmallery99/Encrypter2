@@ -5,7 +5,7 @@ public class Encrypter {
     public static int[] encrypt(String a,int b) {
         HashMap<String,Integer> map = new HashMap<>();
 
-        String mapList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_ ";
+        String mapList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_ 1234567890!@#$%^&*()+-=?/.,><;:'`[]";
 
         for (int i = 0; i < mapList.length(); i++) {
             map.put(String.valueOf(mapList.charAt(i)), (i +1));

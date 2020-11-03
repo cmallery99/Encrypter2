@@ -8,7 +8,7 @@ public class Decrypter {
         Random random = new Random(b);
         HashMap<Integer,String> map = new HashMap<>();
 
-        String mapList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_ ";
+        String mapList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_ 1234567890!@#$%^&*()+-=?/.,><;:'`";
 
         for (int i = 0; i < mapList.length(); i++) {
             map.put((i+1) , String.valueOf(mapList.charAt(i)));
